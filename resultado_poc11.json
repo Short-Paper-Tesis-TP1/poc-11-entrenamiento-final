@@ -1,0 +1,175 @@
+{
+  "poc": "11_entrenamiento_final",
+  "versiones": {
+    "lightgbm": "4.7.0",
+    "scikit_learn": "1.8.0",
+    "pandas": "2.3.3",
+    "numpy": "2.3.5"
+  },
+  "poblacion": {
+    "filas": 182800,
+    "emprendedoras": 55133,
+    "tasa_target": 0.0718
+  },
+  "particion": {
+    "entrenamiento": 127960,
+    "calibracion": 27420,
+    "prueba": 27420
+  },
+  "variables": [
+    "ratio_cuota_ingreso",
+    "ratio_deuda_ingreso",
+    "ratio_monto_ingreso",
+    "n_otros_creditos",
+    "atraso_historial",
+    "edad",
+    "nivel_educativo",
+    "n_hijos",
+    "anios_trabajo_negocio"
+  ],
+  "monotonia": [
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "parametros_lightgbm": {
+    "n_estimators": 600,
+    "learning_rate": 0.03,
+    "num_leaves": 31,
+    "min_child_samples": 200,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.9,
+    "random_state": 42,
+    "n_jobs": -1,
+    "verbose": -1
+  },
+  "cv_5_lightgbm_final": {
+    "auc_todas": 0.6558,
+    "sd_todas": 0.0019,
+    "auc_emprendedoras": 0.6437,
+    "sd_emprendedoras": 0.011
+  },
+  "modelos": {
+    "LightGBM final (4 restricciones SBS)": {
+      "segundos_entrenamiento": 1.1,
+      "corte_f1_calibracion": 0.1024,
+      "todas": {
+        "n": 27420,
+        "tasa": 0.0718,
+        "auc_roc": 0.6584,
+        "auc_pr": 0.1376,
+        "recall": 0.453,
+        "precision": 0.1297,
+        "f1": 0.2017,
+        "brier_sin_calibrar": 0.065,
+        "brier_calibrado": 0.065
+      },
+      "emprendedoras": {
+        "n": 8261,
+        "tasa": 0.0777,
+        "auc_roc": 0.631,
+        "auc_pr": 0.1255,
+        "recall": 0.4829,
+        "precision": 0.12,
+        "f1": 0.1922,
+        "brier_sin_calibrar": 0.0708,
+        "brier_calibrado": 0.0706
+      }
+    },
+    "LightGBM sin restricciones": {
+      "segundos_entrenamiento": 1.0,
+      "corte_f1_calibracion": 0.0964,
+      "todas": {
+        "n": 27420,
+        "tasa": 0.0718,
+        "auc_roc": 0.6642,
+        "auc_pr": 0.141,
+        "recall": 0.3575,
+        "precision": 0.153,
+        "f1": 0.2143,
+        "brier_sin_calibrar": 0.0648,
+        "brier_calibrado": 0.0648
+      },
+      "emprendedoras": {
+        "n": 8261,
+        "tasa": 0.0777,
+        "auc_roc": 0.6414,
+        "auc_pr": 0.1295,
+        "recall": 0.3863,
+        "precision": 0.1431,
+        "f1": 0.2088,
+        "brier_sin_calibrar": 0.0705,
+        "brier_calibrado": 0.0704
+      }
+    },
+    "Regresion logistica": {
+      "segundos_entrenamiento": 0.1,
+      "corte_f1_calibracion": 0.0884,
+      "todas": {
+        "n": 27420,
+        "tasa": 0.0718,
+        "auc_roc": 0.6538,
+        "auc_pr": 0.1377,
+        "recall": 0.4835,
+        "precision": 0.1243,
+        "f1": 0.1977,
+        "brier_sin_calibrar": 0.065,
+        "brier_calibrado": 0.065
+      },
+      "emprendedoras": {
+        "n": 8261,
+        "tasa": 0.0777,
+        "auc_roc": 0.6284,
+        "auc_pr": 0.1264,
+        "recall": 0.5374,
+        "precision": 0.1151,
+        "f1": 0.1896,
+        "brier_sin_calibrar": 0.0705,
+        "brier_calibrado": 0.0706
+      }
+    },
+    "Random Forest": {
+      "segundos_entrenamiento": 2.6,
+      "corte_f1_calibracion": 0.1008,
+      "todas": {
+        "n": 27420,
+        "tasa": 0.0718,
+        "auc_roc": 0.659,
+        "auc_pr": 0.1335,
+        "recall": 0.4749,
+        "precision": 0.1268,
+        "f1": 0.2001,
+        "brier_sin_calibrar": 0.065,
+        "brier_calibrado": 0.0651
+      },
+      "emprendedoras": {
+        "n": 8261,
+        "tasa": 0.0777,
+        "auc_roc": 0.6255,
+        "auc_pr": 0.1183,
+        "recall": 0.5218,
+        "precision": 0.117,
+        "f1": 0.1912,
+        "brier_sin_calibrar": 0.0707,
+        "brier_calibrado": 0.071
+      }
+    }
+  },
+  "ajuste_sbs": {
+    "tasa_sbs": 0.047,
+    "tasa_entrenamiento": 0.0718,
+    "media_calibrada_prueba": 0.0718,
+    "media_ajustada_sbs_prueba": 0.0475,
+    "ejemplo_0_20": 0.1375,
+    "auc_roc_calibrada": 0.6565,
+    "auc_roc_ajustada": 0.6565
+  },
+  "segundos_totales": 15.6
+}

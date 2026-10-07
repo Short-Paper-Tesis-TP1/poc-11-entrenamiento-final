@@ -1,0 +1,29 @@
+==============================================================================
+PoC 11 - ENTRENAMIENTO FINAL | 9 variables | mujeres con Cash loans
+==============================================================================
+Poblacion: 182,800 | emprendedoras: 55,133 | tasa TARGET: 0.0718
+Faltantes por variable (%): {'ratio_cuota_ingreso': 0.0, 'ratio_deuda_ingreso': 13.45, 'ratio_monto_ingreso': 0.0, 'n_otros_creditos': 13.45, 'atraso_historial': 67.34, 'edad': 0.0, 'nivel_educativo': 0.0, 'n_hijos': 0.0, 'anios_trabajo_negocio': 23.28}
+
+CV 5 particiones, LightGBM final: AUC todas 0.6558 (0.0019) | emprendedoras 0.6437 (0.011)
+
+Particion: entrenamiento 127,960 | calibracion 27,420 | prueba 27,420 | tasa en entrenamiento 0.0718
+
+[LightGBM final (4 restricciones SBS)]  entrenamiento 1.1 s | corte (F1 max. en calibracion) = 0.1024
+  todas          AUC-ROC 0.6584 | AUC-PR 0.1376 | recall 0.4530 | precision 0.1297 | F1 0.2017 | Brier calibrado 0.0650
+  emprendedoras  AUC-ROC 0.6310 | AUC-PR 0.1255 | recall 0.4829 | precision 0.1200 | F1 0.1922 | Brier calibrado 0.0706
+
+[LightGBM sin restricciones]  entrenamiento 1.0 s | corte (F1 max. en calibracion) = 0.0964
+  todas          AUC-ROC 0.6642 | AUC-PR 0.1410 | recall 0.3575 | precision 0.1530 | F1 0.2143 | Brier calibrado 0.0648
+  emprendedoras  AUC-ROC 0.6414 | AUC-PR 0.1295 | recall 0.3863 | precision 0.1431 | F1 0.2088 | Brier calibrado 0.0704
+
+[Regresion logistica]  entrenamiento 0.1 s | corte (F1 max. en calibracion) = 0.0884
+  todas          AUC-ROC 0.6538 | AUC-PR 0.1377 | recall 0.4835 | precision 0.1243 | F1 0.1977 | Brier calibrado 0.0650
+  emprendedoras  AUC-ROC 0.6284 | AUC-PR 0.1264 | recall 0.5374 | precision 0.1151 | F1 0.1896 | Brier calibrado 0.0706
+
+[Random Forest]  entrenamiento 2.6 s | corte (F1 max. en calibracion) = 0.1008
+  todas          AUC-ROC 0.6590 | AUC-PR 0.1335 | recall 0.4749 | precision 0.1268 | F1 0.2001 | Brier calibrado 0.0651
+  emprendedoras  AUC-ROC 0.6255 | AUC-PR 0.1183 | recall 0.5218 | precision 0.1170 | F1 0.1912 | Brier calibrado 0.0710
+
+Ajuste SBS (0.047): media calibrada 0.0718 -> ajustada 0.0475 | 20 % pasa a 13.8% | AUC sin cambio: 0.6565 = 0.6565
+
+Tiempo total: 15.6 s | Guardado: resultado_poc11.json y artefactos/
